@@ -14,7 +14,7 @@ def get_data():
 
 @app.route('/post_data', methods=['POST'])
 def post_data():
-    data = request.data
+    data = request.get_json(force=True)
     return struct.pack('!i', len(data))
 
 
