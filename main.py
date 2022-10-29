@@ -15,7 +15,7 @@ def get_data():
 
 @app.route('/post_data', methods=['POST'])
 def post_data():
-    data = request.stream.read()
+    data = bytes(request.get_data())
     return struct.pack('!i', len(data))
 
 
