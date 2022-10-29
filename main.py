@@ -9,12 +9,13 @@ app = Flask(__name__)
 
 @app.route('/get_data', methods=['GET'])
 def get_data():
+    time.sleep(1)
     return struct.pack('!q 1024s', round(time.time() * 1000), os.urandom(1024))
 
 
 @app.route('/post_data', methods=['POST'])
 def post_data():
-    data = request.get_json(force=True)
+    data = request.get_json()
     return struct.pack('!i', len(data))
 
 
