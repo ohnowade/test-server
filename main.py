@@ -1,6 +1,7 @@
 import os
 import struct
 import time
+from datetime import datetime
 
 from flask import Flask, request
 
@@ -10,7 +11,11 @@ app = Flask(__name__)
 @app.route('/get_data', methods=['GET'])
 def get_data():
     time.sleep(1)
-    return struct.pack('!q 1024s', round(time.time() * 1000), os.urandom(1024))
+    return struct.pack(
+        '!q 1024s',
+        int((datetime.datetime.utcnow() - datetime.datetime(1970, 1, 1)).total_seconds() * 1000),
+        os.urandom(1024)
+    )
 
 
 @app.route('/post_data', methods=['POST'])
