@@ -13,7 +13,7 @@ def get_data():
     time.sleep(1)
     return struct.pack(
         '!q 1024s',
-        int((datetime.datetime.utcnow() - datetime.datetime(1970, 1, 1)).total_seconds() * 1000),
+        int((datetime.utcnow() - datetime(1970, 1, 1)).total_seconds() * 1000),
         os.urandom(1024)
     )
 
